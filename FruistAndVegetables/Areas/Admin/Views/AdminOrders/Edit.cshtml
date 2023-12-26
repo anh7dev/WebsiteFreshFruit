@@ -1,0 +1,61 @@
+﻿@model FruistAndVegetables.Models.Order
+
+@{
+    ViewData["Title"] = "Chỉnh sửa đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<form asp-controller="AdminOrders" asp-action="Edit" asp-route-id="@Model.OrderId" method="post" >
+    <div class="form-horizontal">
+        <h4>Order</h4>
+        <hr />
+
+        <div asp-validation-summary="ModelOnly" class="text-danger" method="post"></div>
+        <input type="hidden" asp-for="OrderId" />
+        <input type="hidden" asp-for="CustomerId" />
+        <input type="hidden" asp-for="TotalMoney" />
+        <input type="hidden" asp-for="OrderDate" />
+     
+        <div class="form-group">
+            <label asp-for="CustomerId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.CustomerId">
+                    <option value="@Model.CustomerId">@Model.CustomerId</option>
+                    <!-- Add other options if needed -->
+                </select>
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!-- Add other form fields for OrderDate, ShipDate, etc. -->
+
+        <div class="form-group">
+            <label asp-for="TranSactStatusId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="TranSactStatusId" class="form-control" asp-items="ViewBag.TranSactStatusId">
+                    <option value="@Model.TranSactStatusId">@Model.TranSactStatusId</option>
+                    <!-- Add other options if needed -->
+                </select>
+                <span asp-validation-for="TranSactStatusId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!-- Add other form fields for Deleted, Paid, PaymentDate, etc. -->
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Cập nhật" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

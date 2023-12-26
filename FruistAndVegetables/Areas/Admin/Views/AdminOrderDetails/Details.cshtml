@@ -1,0 +1,107 @@
+﻿@model FruistAndVegetables.Areas.Admin.Models.OrderDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Enlink - Admin Dashboard Template</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/logo/favicon.png">
+
+    <!-- page css -->
+    <!-- Core css -->
+    <link href="assets/css/app.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app">
+        <div class="layout">
+            <div class="container">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="invoice" class="p-h-30">
+                            <div class="m-t-15 lh-2">
+                                <!-- Your existing content -->
+                            </div>
+
+                            <div class="row m-t-20 lh-2">
+                                <!-- Your existing content -->
+                            </div>
+
+                            <div class="m-t-20">
+                                <!-- Details.cshtml -->
+                                <!-- Existing code... -->
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>Mặt hàng</th>
+                                                <th>Giá bán</th>
+                                                <th>Tổng tiền</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                                @foreach (var orderDetail in Model.OrderDetails)
+                                                {
+                                                    <tr>
+                                                        <td>@orderDetail.OrderId</td>
+                                                        <td>@orderDetail.Product.ProductName</td>
+                                                        <td>@orderDetail.Product.Price</td>
+                                                        <td>@orderDetail.Order.TotalMoney</td>
+                                                    </tr>
+                                                }
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- Existing code... -->
+
+
+                                <div class="row m-t-30 lh-1-8">
+                                    <div class="col-sm-12">
+                                        <div class="float-right text-right">
+                                            <hr>
+                                            <h3>
+                                                <span class="font-weight-semibold text-dark">Tổng Tiền : </span>
+                                                @Model.Order.OrderDetails.Sum(x => x.Total)
+
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row m-v-20">
+                                    <div class="col-sm-6">
+                                        <img class="img-fluid text-opacity m-t-5" width="100" src="assets/images/logo/logo.png" alt="">
+                                    </div>
+                                    <div class="col-sm-6 text-right">
+                                        <small><span class="font-weight-semibold text-dark">Phone:</span> 0378 588 869</small>
+                                        <br>
+                                        <small>nccuong.developer@gmail.com</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Content Wrapper END -->
+    </div>
+
+    <script src="assets/js/vendors.min.js"></script>
+    <script src="assets/js/app.min.js"></script>
+</body>
+
+</html>

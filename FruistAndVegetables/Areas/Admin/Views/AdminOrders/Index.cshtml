@@ -1,0 +1,52 @@
+﻿@model IEnumerable<FruistAndVegetables.Models.Order>
+
+@{
+    ViewData["Title"] = "Danh sách hóa đơn";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TranSactStatus.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalMoney)
+        </th>
+        <!-- Other fields go here -->
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Customer.FullName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.OrderId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TranSactStatus.Description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TotalMoney)
+    </td>
+    <!-- Other fields go here -->
+    <td>
+        <a asp-action="Details" asp-route-id="@item.OrderId">Chi tiết</a>
+    </td>
+    <td>
+        <a asp-action="Edit" asp-route-id="@item.OrderId">Cập nhật</a>
+    </td>
+</tr>
+    }
+</table>

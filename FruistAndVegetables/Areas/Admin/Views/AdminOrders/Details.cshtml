@@ -1,0 +1,55 @@
+﻿@model FruistAndVegetables.Areas.Admin.Models.OrderDetailsViewModel
+<!-- Các phần hiển thị thông tin hóa đơn -->
+<h3>Hóa đơn số: @Model.Order.OrderId</h3>
+
+<!-- Danh sách mặt hàng -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mặt hàng</th>
+            <th>Giá</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var orderDetail in Model.Order.OrderDetails)
+        {
+            <tr>
+                <td>
+                    @if (orderDetail.Product != null)
+                    {
+                        @orderDetail.Product.ProductName
+                    }
+                    else
+                    {
+                        <span class="text-danger">Product not available</span>
+                    }
+                </td>
+                <td>
+                    @if (orderDetail.Product != null)
+                    {
+                        @orderDetail.Product.Price
+                    }
+                    else
+                    {
+                        <span class="text-danger">Price not available</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td><strong>Tổng tiền</strong></td>
+            <td>
+                @if (Model.Order.OrderDetails != null && Model.Order.OrderDetails.Any())
+                {
+                    @Model.Order.OrderDetails.Sum(od => od.Product != null ? od.Product.Price : 0)
+                }
+                else
+                {
+                    <span class="text-danger">Total not available</span>
+                }
+            </td>
+        </tr>
+    </tfoot>
+</table>
